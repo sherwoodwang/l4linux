@@ -47,3 +47,7 @@ obj-$(CONFIG_ZRAM) += zram/
 nvme-y		:= nvme-core.o nvme-scsi.o
 skd-y		:= skd_main.o
 swim_mod-y	:= swim.o swim_asm.o
+
+obj-$(CONFIG_L4_BLK_DRV)	+= l4bd.o
+obj-$(CONFIG_L4_BLK_DS_DRV)	+= l4bdds.o
+obj-$(CONFIG_L4_SERVER_FDX)	+= l4fdx-srv.o

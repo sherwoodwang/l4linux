@@ -72,6 +72,12 @@ unsigned long __init bootmem_bootmap_pages(unsigned long pages)
 	return PAGE_ALIGN(bytes) >> PAGE_SHIFT;
 }
 
+#ifdef CONFIG_L4
+#define phys_to_virt_r(x)	__va(x)
+#else
+#define phys_to_virt_r(x)	phys_to_virt(x)
+#endif
+
 /*
  * link bdata in order
  */
@@ -98,7 +104,7 @@ static unsigned long __init init_bootmem_core(bootmem_data_t *bdata,
 	unsigned long mapsize;
 
 	mminit_validate_memmodel_limits(&start, &end);
-	bdata->node_bootmem_map = phys_to_virt(PFN_PHYS(mapstart));
+	bdata->node_bootmem_map = phys_to_virt_r(PFN_PHYS(mapstart));
 	bdata->node_min_pfn = start;
 	bdata->node_low_pfn = end;
 	link_bootmem(bdata);
@@ -575,7 +581,7 @@ find_block:
 				PFN_UP(end_off), BOOTMEM_EXCLUSIVE))
 			BUG();
 
-		region = phys_to_virt(PFN_PHYS(bdata->node_min_pfn) +
+		region = phys_to_virt_r(PFN_PHYS(bdata->node_min_pfn) +
 				start_off);
 		memset(region, 0, size);
 		/*

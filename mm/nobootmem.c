@@ -48,7 +48,12 @@ static void * __init __alloc_memory_core_early(int nid, u64 size, u64 align,
 	if (memblock_reserve(addr, size))
 		return NULL;
 
+
+#ifdef CONFIG_L4
+	ptr = __va(addr);
+#else
 	ptr = phys_to_virt(addr);
+#endif
 	memset(ptr, 0, size);
 	/*
 	 * The min_count is set to 0 so that bootmem allocated blocks

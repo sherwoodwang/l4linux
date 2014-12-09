@@ -1179,7 +1179,11 @@ again:
 
 done:
 	memblock_reserve(alloc, size);
+#ifdef CONFIG_L4
+	ptr = __va(alloc);
+#else
 	ptr = phys_to_virt(alloc);
+#endif
 	memset(ptr, 0, size);
 
 	/*

@@ -5301,6 +5301,21 @@ F:	Documentation/auxdisplay/ks0108
 F:	drivers/auxdisplay/ks0108.c
 F:	include/linux/ks0108.h
 
+L4 PORT
+M:	Adam Lackorzynski <adam@tudos.org>
+L:	l4-hackers@os.inf.tu-dresden.de
+W:	http://l4linux.org/
+S:	Maintained
+F:	arch/l4/
+F:	drivers/video/l4*
+F:	drivers/net/l4*
+F:	drivers/block/l4*
+F:	drivers/char/tpm/tpm_l4stpm.c
+F:	drivers/char/l4cdds.c
+F:	drivers/input/l4*
+F:	drivers/tty/serial/l4*
+F:	drivers/gpio/l4gpio.c
+
 LAPB module
 L:	linux-x25@vger.kernel.org
 S:	Orphan
